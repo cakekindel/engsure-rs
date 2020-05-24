@@ -5,6 +5,7 @@ _pronounced like "ensure"_
 ## Table of Contents
 - [How to Use](#how-to-use)
   - [API Docs](#api-docs)
+  - [Best Practices](#best-practices)
   - [Simple Example](#simple-example)
 - [How to Contribute](#how-to-contribute)
 
@@ -13,12 +14,23 @@ _pronounced like "ensure"_
 ### API Docs
 TODO
 
+### Best Practices
+How to get the most out of `engsure`
+
+#### provide descriptive labels with `aka` as much as possible
+This makes your error messages significantly more valuable, by having a human-readable name for the item being validated.
+
+#### limit `use`s from `engsure` as much as possible
+the API was designed with concise names, that way you can use fully-qualified names rather than bringing them directly into scope. 
+
+#### implement the `engsure::Validate` trait
+This has 2 benefits:
+  1. it lets you separately define `engsure` functionality from the rest of your struct's functionality
+  2. by returning the `engsure::Ctx<MyStruct>`, you have more flexibility on what you can do _after_ validating.
+      - _e.g._ chain validation of other instances with `and_then` (see the `main` fn in [Simple Example](#simple-example))
+
 ### Simple Example
 ```rust
-use engsure::opt::{is_some};
-use engsure::num::{is_phone_number};
-use engsure::txt::{is_email_address};
-
 struct Person {
   pub first_name: String,
   pub last_name: String,
@@ -30,6 +42,12 @@ impl Person {
   pub fn name(&self) -> String {
     format!("{} {}", self.first_name, self.last_name)
   }
+}
+
+impl engsure::Validate for Person {
+  use engsure::opt::{is_some};
+  use engsure::tup::{is_phone_number};
+  use engsure::txt::{is_email_address};
 
   pub fn validate(self) -> engsure::Ctx<Person> {
     engsure::that(self)
