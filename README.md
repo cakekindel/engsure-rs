@@ -60,7 +60,7 @@ pub fn main() -> engsure::Result {
   };
 
   // The following errors with:
-  //   EngsureError: invalid email of "forgot-dotcom@gmail" in "Sally Jackson"
+  //   engsure::TextError { msg: "invalid email of 'forgot-dotcom@gmail' in 'Sally Jackson'", .. }
   bob.validate()
     .and_then(|_| sally.validate())
     .done()
