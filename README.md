@@ -6,7 +6,7 @@ _pronounced like "ensure"_
 - [How to Use](#how-to-use)
   - [API Docs](#api-docs)
   - [Simple Example](#simple-example)
-- [How to contribute](#how-to-contribute)
+- [How to Contribute](#how-to-contribute)
 
 ## How to Use
 
@@ -66,3 +66,6 @@ pub fn main() -> engsure::Result {
     .done()
 }
 ```
+
+## How to Contribute
+TODO
