@@ -3,12 +3,15 @@
 _pronounced like "ensure"_
 
 ## Table of Contents
-- How to use
-  - API Docs
-  - Simple Example
-- How to contribute
+- [How to Use](#how-to-use)
+  - [API Docs](#api-docs)
+  - [Simple Example](#simple-example)
+- [How to contribute](#how-to-contribute)
 
 ## How to Use
+
+### API Docs
+TODO
 
 ### Simple Example
 ```rust
